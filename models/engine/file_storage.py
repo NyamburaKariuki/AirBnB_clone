@@ -5,6 +5,12 @@
 import json
 import os
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage:
@@ -39,7 +45,11 @@ class FileStorage:
         If the file doesn’t exist, no exception should be raised)
         """
         try:
-            with open(FileStorage.__file_path, 'r') as file:
-                FileStorage.__objects = json.load(file)
+            with open(FileStorage.__file_path) as file:
+                objdct = json.load(file)
+                for x in objdct.values():
+                    class_name = x["__class__"]
+                    del x["__class__"]
+                    self.new(eval(class_name)(**x))
         except FileNotFoundError:
             return
