@@ -45,11 +45,11 @@ class FileStorage:
         If the file doesn’t exist, no exception should be raised)
         """
         try:
-            with open(FileStorage.__file_path) as file:
-                objdct = json.load(file)
-                for x in objdct.values():
-                    class_name = x["__class__"]
-                    del x["__class__"]
-                    self.new(eval(class_name)(**x))
-        except FileNotFoundError:
+            with open(FileStorage.__file_path, 'r', encoding='utf-8') as file:
+                objd = file.read()
+        except Exception:
             return
+        objects = eval(objd)
+        for (k, v) in objects.items():
+            objects[k] = eval(k.split('.')[0] + '(**v)')
+        FileStorage.__objects = objects

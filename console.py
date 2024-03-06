@@ -16,25 +16,8 @@ from models.amenity import Amenity
 from models.review import Review
 
 
-def parse(arg):
-    braces = re.search(r"\{(.*?)\}", arg)
-    brackets = re.search(r"\[(.*?)\]", arg)
-    if braces is None:
-        if brackets is None:
-            return [i.strip(",") for i in split(arg)]
-        else:
-            lex = split(arg[:brackets.span()[0]])
-            ret1 = [i.strip(",") for i in lex]
-            retl.append(brackets.group())
-            return retl
-    else:
-        lex = split(arg[:braces.span()[0]])
-        retl = [i.strip(",") for i in lex]
-        retl.append(braces.group())
-        return ret1
-    
 class HBNBCommand(cmd.Cmd):
-    """Defines the HolbertonBnB command interpreter"""
+    """defines the coommand interpreter"""
     prompt = "(hbnb) "
     __classes = {
             "BaseModel",
@@ -43,8 +26,25 @@ class HBNBCommand(cmd.Cmd):
             "City",
             "Place",
             "Amenity",
-            "Review",
-        }
+            "Review"
+    }
+
+    def parse(arg):
+        braces = re.search(r"\{(.*?)\}", arg)
+        brackets = re.search(r"\[(.*?)\]", arg)
+        if braces is None:
+            if brackets is None:
+                return [i.strip(",") for i in split(arg)]
+            else:
+                lex = split(arg[:brackets.span()[0]])
+                ret1 = [i.strip(",") for i in lex]
+                retl.append(brackets.group())
+                return retl
+        else:
+            lex = split(arg[:braces.span()[0]])
+            retl = [i.strip(",") for i in lex]
+            retl.append(braces.group())
+            return ret1
 
     def default(self, arg):
         """defaul cmd behavior when prompt is invalid"""
