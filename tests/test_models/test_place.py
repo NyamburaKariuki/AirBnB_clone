@@ -55,8 +55,8 @@ class TestPlace(unittest.TestCase):
     def test_string(self):
         """Test method for string representation"""
         place1 = Place()
-        string = f"[{type(p1).__name__}] ({place1.id}) {place1.__dict__}"
-        self.assertEqual(p1ace.__str__(), string)
+        string = f"[{type(place1).__name__}] ({place1.id}) {place1.__dict__}"
+        self.assertEqual(place1.__str__(), string)
 
     def test_save(self):
         """Test method for save"""

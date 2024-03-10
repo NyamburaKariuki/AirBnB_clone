@@ -37,7 +37,7 @@ class TestState(unittest.TestCase):
         self.assertIsInstance(user1.id, str)
         self.assertIsInstance(user1.created_at, datetime)
         self.assertIsInstance(user1.updated_at, datetime)
-        self.assertEqual(user1.updated_at, u2.updated_at)
+        self.assertEqual(user1.updated_at, user2.updated_at)
 
     def test_str(self):
         """Test for string rep"""
@@ -55,7 +55,7 @@ class TestState(unittest.TestCase):
     def test_todict(self):
         """Test for dict"""
         user1 = User()
-        user2 = User(**u1.to_dict())
+        user2 = User(**user1.to_dict())
         a_dict = user2.to_dict()
         self.assertIsInstance(a_dict, dict)
         self.assertEqual(a_dict['__class__'], type(user2).__name__)

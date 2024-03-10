@@ -35,7 +35,7 @@ class TestReview(unittest.TestCase):
     def test_initialization(self):
         """Test method for public instances"""
         review1 = Review()
-        review2 = Review(**r1.to_dict())
+        review2 = Review(**review1.to_dict())
         self.assertIsInstance(review1.id, str)
         self.assertIsInstance(review1.created_at, datetime)
         self.assertIsInstance(review1.updated_at, datetime)

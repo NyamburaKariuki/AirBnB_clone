@@ -9,7 +9,7 @@ from models.city import City
 from datetime import datetime
 
 city1 = City()
-city2 = City(**c1.to_dict())
+city2 = City(**city1.to_dict())
 city3 = City("hello", "wait", "in")
 
 

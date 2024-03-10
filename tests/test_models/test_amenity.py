@@ -40,7 +40,7 @@ class TestAmenity(unittest.TestCase):
         self.assertIsInstance(x.id, str)
         self.assertIsInstance(x.created_at, datetime)
         self.assertIsInstance(x.updated_at, datetime)
-        self.assertEqual(x.updated_at, a2.updated_at)
+        self.assertEqual(x.updated_at, y.updated_at)
 
     def test_string(self):
         """Test for string representation"""
@@ -60,10 +60,10 @@ class TestAmenity(unittest.TestCase):
         x = Amenity()
         y = Amenity(**x.to_dict())
         x_todict = y.to_dict()
-        self.assertIsInstance(x_dict, dict)
-        self.assertEqual(x_dict['__class__'], type(y).__name__)
-        self.assertIn('created_at', x_dict.keys())
-        self.assertIn('updated_at', x_dict.keys())
+        self.assertIsInstance(x_todict, dict)
+        self.assertEqual(x_todict['__class__'], type(y).__name__)
+        self.assertIn('created_at', x_todict.keys())
+        self.assertIn('updated_at', x_todict.keys())
         self.assertNotEqual(x, y)
 
 
