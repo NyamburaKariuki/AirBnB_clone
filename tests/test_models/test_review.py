@@ -1,16 +1,16 @@
 #!/usr/bin/python3
-"""Unit tests for the `amenity` module.
+"""Unit tests for the `review` module.
 """
 import os
 import unittest
+from models.review import Review
 from models import storage
 from datetime import datetime
-from models.amenity import Amenity
 from models.engine.file_storage import FileStorage
 
 
-class TestAmenity(unittest.TestCase):
-    """Test cases for the `Amenity` class."""
+class TestReview(unittest.TestCase):
+    """Test cases for Review class."""
 
     def setUp(self):
         pass
@@ -22,49 +22,48 @@ class TestAmenity(unittest.TestCase):
             os.remove(FileStorage._FileStorage__file_path)
 
     def test_parameters(self):
-        """Test for class attributes"""
+        """Test method for class attributes"""
 
-        x = Amenity()
-        y = Amenity(**x.to_dict())
-        z = Amenity("hi", "how", "in")
+        review1 = Review()
+        review3 = Review("hey", "you", "there")
+        k = f"{type(review1).__name__}.{review1.id}"
+        self.assertIsInstance(review1.text, str)
+        self.assertIsInstance(review1.user_id, str)
+        self.assertIsInstance(review1.place_id, str)
+        self.assertEqual(review3.text, "")
 
-        k = f"{type(x).__name__}.{x.id}"
-        self.assertIsInstance(x.name, str)
-        self.assertIn(k, storage.all())
-        self.assertEqual(x.name, "")
-
-    def test_init(self):
-        """test for public instances"""
-        x = Amenity()
-        y = Amenity(**x.to_dict())
-        self.assertIsInstance(x.id, str)
-        self.assertIsInstance(x.created_at, datetime)
-        self.assertIsInstance(x.updated_at, datetime)
-        self.assertEqual(x.updated_at, a2.updated_at)
+    def test_initialization(self):
+        """Test method for public instances"""
+        review1 = Review()
+        review2 = Review(**r1.to_dict())
+        self.assertIsInstance(review1.id, str)
+        self.assertIsInstance(review1.created_at, datetime)
+        self.assertIsInstance(review1.updated_at, datetime)
+        self.assertEqual(review1.updated_at, review2.updated_at)
 
     def test_string(self):
-        """Test for string representation"""
-        x = Amenity()
-        string = f"[{type(x).__name__}] ({x.id}) {x.__dict__}"
-        self.assertEqual(x.__str__(), string)
+        """Test method for string representation"""
+        review1 = Review()
+        string = f"[{type(review1).__name__}] ({review1.id}) {review1.__dict__}"
+        self.assertEqual(review1.__str__(), string)
 
     def test_save(self):
         """Test method for save"""
-        x = Amenity()
-        old_up = x.updated_at
-        x.save()
-        self.assertNotEqual(x.updated_at, old_up)
+        review1 = Review()
+        old_update = review1.updated_at
+        review1.save()
+        self.assertNotEqual(review1.updated_at, old_update)
 
     def test_to_dict(self):
-        """Test method for to_dict"""
-        x = Amenity()
-        y = Amenity(**x.to_dict())
-        x_todict = y.to_dict()
-        self.assertIsInstance(x_dict, dict)
-        self.assertEqual(x_dict['__class__'], type(y).__name__)
-        self.assertIn('created_at', x_dict.keys())
-        self.assertIn('updated_at', x_dict.keys())
-        self.assertNotEqual(x, y)
+        """Test method for dict"""
+        review1 = Review()
+        review2 = Review(**review1.to_dict())
+        a_dict = review2.to_dict()
+        self.assertIsInstance(a_dict, dict)
+        self.assertEqual(a_dict['__class__'], type(review2).__name__)
+        self.assertIn('created_at', a_dict.keys())
+        self.assertIn('updated_at', a_dict.keys())
+        self.assertNotEqual(review1, review2)
 
 
 if __name__ == "__main__":
