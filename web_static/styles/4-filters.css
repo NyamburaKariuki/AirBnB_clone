@@ -4,8 +4,12 @@
   width: 100%;
   border: solid 1px #dddddd;
   border-radius: 4px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: right;
 }
-.filters button {
+section.filters button {
   font-size: 18px;
   background-color: #ff5a5f;
   color: #ffffff;
@@ -14,7 +18,8 @@
   border: none;
   border-radius: 4px;
   margin-right: 30px;
+  opacity: 1;
 }
-.filters button:hover {
+section.filters button:hover {
   opacity: 0.9;
 }
