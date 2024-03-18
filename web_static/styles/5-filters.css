@@ -5,30 +5,31 @@
   border: 1px solid #dddddd;
   border-radius: 4px;
 }
+
 .locations {
   height: 100%;
   width: 25%;
   border-right: 1px solid #dddddd;
   display: inline-block;
-  margin-left: 30px;
-  margin-bottom: 30px;
+  margin-left: 40px;
 }
+
 .amenities {
   height: 100%;
   width: 25%;
-  border-right: 1px solid #dddddd;
   display: inline-block;
-  margin-left: 30px;
-}
-h3 {
-  font-weight: 600;
-  font-size: 14px;
-}
-h4 {
-  font-weight: 400;
-  font-size: 13px;
+  margin-left: 40px;
 }
 
+h3 {
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+h4 {
+  font-weight: 400;
+  font-size: 14px;
+}
 button {
   font-size: 18px;
   background-color: #ff5a5f;
